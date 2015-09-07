@@ -34,9 +34,18 @@ trait RestRoutes extends HttpService
     pathPrefix("events") {
       pathEndOrSingleSlash {
         get {
+          println("Getting")
           // GET /events
           onSuccess(getEvents()) { events =>
             complete(OK, events)
+          }
+        } ~
+        put {
+          println("Putting")
+          onSuccess(getEvents()) {
+            println("Hooray!")
+            events =>
+              complete(OK, events)
           }
         }
       }
